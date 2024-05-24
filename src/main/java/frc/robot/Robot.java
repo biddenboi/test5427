@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.time.Period;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -12,13 +14,13 @@ public class Robot extends TimedRobot {
   private Spark leftMotor2 = new Spark(1);
   private Spark rightMotor1 = new Spark(2);
   private Spark rightMotor2 = new Spark(3);
-
+  LedSubsystem led = new LedSubsystem();
   private Joystick joy1 = new Joystick(0);
 
   @Override
   public void robotInit() {
     //PLACEHOLDER led length
-    LedSubsystem led = new LedSubsystem();
+    
   }
 
   @Override
@@ -47,6 +49,7 @@ public class Robot extends TimedRobot {
     //shuffle board log for speed
     SmartDashboard.putNumber("Left Motor Speed", left);
     SmartDashboard.putNumber("Right Motor Speed", right);
+    led.periodic();
   }
 
   @Override

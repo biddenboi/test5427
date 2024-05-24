@@ -19,6 +19,9 @@ public class LedSubsystem {
         led.start();
     }
 
+    public void periodic() {
+        setAllColor(0, 0, 0);
+    }
     public void setAllColor(int r, int g, int b) {
         for (int i = 0; i < ledBuffer.getLength(); i++) {
             ledBuffer.setRGB(i, r, g, b);
