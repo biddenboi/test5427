@@ -2,8 +2,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class LedSubsystem {
+public class LedSubsystem  extends SubsystemBase{
     //PLACEHOLDER pwm port
     AddressableLED led;
     AddressableLEDBuffer ledBuffer;
@@ -19,6 +20,7 @@ public class LedSubsystem {
         led.start();
     }
 
+    @Override
     public void periodic() {
         setAllColor(0, 0, 0);
     }
