@@ -45,4 +45,12 @@ public class LedSubsystem  extends SubsystemBase{
         ledColors[led].setGreen(g);
         ledColors[led].setBlue(b);
     }
+
+    public void setLength(int length) {
+        ledBuffer = new AddressableLEDBuffer(length);
+    }
+
+    public int getLength() {
+        return ledBuffer.getLength();
+    }
 }
