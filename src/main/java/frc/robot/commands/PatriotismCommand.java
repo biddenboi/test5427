@@ -13,6 +13,10 @@ public class PatriotismCommand extends Command {
 
     @Override
     public void initialize() {
+    }
+
+    @Override
+    public void execute() {
         for (int i = 0; i < ledSubsystem.getLength(); i+=3) {
             ledSubsystem.setColor(i, 255, 0, 0);
         }
@@ -22,11 +26,7 @@ public class PatriotismCommand extends Command {
         for (int i = 2; i < ledSubsystem.getLength(); i+=3) {
             ledSubsystem.setColor(i, 0, 0, 255);
         }
-    }
-
-    @Override
-    public void execute() {
-
+        
     }
 
 
