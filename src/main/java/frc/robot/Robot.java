@@ -1,21 +1,14 @@
 package frc.robot;
 
-import java.time.Period;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.LedSubsystem;
+import frc.robot.subsystems.SteelTalonsMotor;
 
 public class Robot extends TimedRobot {
-
-  private Spark leftMotor1 = new Spark(0);
-  private Spark leftMotor2 = new Spark(1);
-  private Spark rightMotor1 = new Spark(2);
-  private Spark rightMotor2 = new Spark(3);
-  LedSubsystem led = new LedSubsystem();
-  private Joystick joy1 = new Joystick(0);
+LedSubsystem led = new LedSubsystem();
+SteelTalonsMotor motor = new SteelTalonsMotor();
+double startTime;
 
   @Override
   public void robotInit() {
@@ -23,33 +16,32 @@ public class Robot extends TimedRobot {
     
   }
 
+
   @Override
   public void robotPeriodic() {}
 
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    startTime = Timer.getFPGATimestamp();
+  }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    double time = Timer.getFPGATimestamp();
+    if (time - startTime < 3) {
+      motor.setSpeed(.6f);
+    }else {
+      motor.setSpeed(0);
+    }
+  }
 
   @Override
   public void teleopInit() {}
 
   @Override
   public void teleopPeriodic() {
-    //PLACEHOLDER axis value
-    double left = joy1.getRawAxis(1) * 0.6;
-    double right = joy1.getRawAxis(4) * 0.6;
-
-    leftMotor1.set(left);
-    leftMotor2.set(left);
-    rightMotor1.set(-right); //right opposite chassis
-    rightMotor2.set(-right);
-
-    //shuffle board log for speed
-    SmartDashboard.putNumber("Left Motor Speed", left);
-    SmartDashboard.putNumber("Right Motor Speed", right);
     led.periodic();
+
   }
 
   @Override
